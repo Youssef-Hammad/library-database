@@ -16,14 +16,16 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Normal;
-            string Query = "select BOOKNAME,AUTHORFIRSTNAME,AUTHORLASTNAME,PUBLISHER " +
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(400, 100);
+            string Query = "select BOOKNAME as [Book Name],AUTHORFIRSTNAME as Author,PUBLISHER as Publisher " +
                            "from RENTS, BOOK, STUDENT, AUTHORS " +
                            "where RENTS.ISBN = BOOK.ISBN and " +
                            "STUDENT.STUDENT_ID = RENTS.STUDENT_ID and " +
                            "BOOK.AUTHOR_ID = AUTHORS.AUTHOR_ID " +
-                           "and STUDENT.STUDENT_ID = 5";
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-NF0CFJ8\\SQLEXPRESS;Initial Catalog=mylib;Integrated Security=True");
-            SqlCommand comm = new SqlCommand(Query, con);  //need to rename the Query Column Headings.....
+                           "and STUDENT.STUDENT_ID = " + FormState.mainform.SignInID;
+			SqlConnection con = new SqlConnection(connectionstring.myconnectionstring);
+			SqlCommand comm = new SqlCommand(Query, con);  //need to rename the Query Column Headings.....
             con.Open();
             SqlDataAdapter adapt = new SqlDataAdapter(comm);
             DataTable table = new DataTable();
@@ -55,7 +57,7 @@ namespace WindowsFormsApplication1
         {
             FormState.PreviousPage.Show();
             this.Hide();
-            FormState.PreviousPage = this;
+            
         }
 
         private void RentedBooks_FormClosing(object sender, FormClosingEventArgs e)

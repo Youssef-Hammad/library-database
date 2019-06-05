@@ -46,6 +46,90 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add Admin.designer.cs">
+      <DependentUpon>Add Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add Author.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add Author.designer.cs">
+      <DependentUpon>Add Author.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Add Book.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add Book.designer.cs">
+      <DependentUpon>Add Book.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUser.Designer.cs">
+      <DependentUpon>AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin.designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delete Author.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delete Author.designer.cs">
+      <DependentUpon>Delete Author.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Delete Book.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delete Book.designer.cs">
+      <DependentUpon>Delete Book.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteUser.Designer.cs">
+      <DependentUpon>DeleteUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage Authors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage Authors.designer.cs">
+      <DependentUpon>Manage Authors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manage Students.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage Students.Designer.cs">
+      <DependentUpon>Manage Students.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageBooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageBooks.designer.cs">
+      <DependentUpon>ManageBooks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookReport.Designer.cs">
+      <DependentUpon>BookReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentRentBooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentRentBooks.Designer.cs">
+      <DependentUpon>StudentRentBooks.cs</DependentUpon>
+    </Compile>
     <Compile Include="RentedBooks.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +141,24 @@
     </Compile>
     <Compile Include="BrowseBook.Designer.cs">
       <DependentUpon>BrowseBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Show Authors List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Show Authors List.Designer.cs">
+      <DependentUpon>Show Authors List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Show Books List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Show Books List.Designer.cs">
+      <DependentUpon>Show Books List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowList.Designer.cs">
+      <DependentUpon>ShowList.cs</DependentUpon>
     </Compile>
     <Compile Include="ShowListOfBooks.cs">
       <SubType>Form</SubType>
@@ -84,11 +186,74 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Update Book.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Update Book.Designer.cs">
+      <DependentUpon>Update Book.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateUser.Designer.cs">
+      <DependentUpon>UpdateUser.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Add Admin.resx">
+      <DependentUpon>Add Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add Author.resx">
+      <DependentUpon>Add Author.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Add Book.resx">
+      <DependentUpon>Add Book.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddUser.resx">
+      <DependentUpon>AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delete Author.resx">
+      <DependentUpon>Delete Author.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delete Book.resx">
+      <DependentUpon>Delete Book.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteUser.resx">
+      <DependentUpon>DeleteUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage Authors.resx">
+      <DependentUpon>Manage Authors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage Students.resx">
+      <DependentUpon>Manage Students.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageBooks.resx">
+      <DependentUpon>ManageBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookReport.resx">
+      <DependentUpon>BookReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentRentBooks.resx">
+      <DependentUpon>StudentRentBooks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RentedBooks.resx">
       <DependentUpon>RentedBooks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BrowseBook.resx">
       <DependentUpon>BrowseBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Show Authors List.resx">
+      <DependentUpon>Show Authors List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Show Books List.resx">
+      <DependentUpon>Show Books List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowList.resx">
+      <DependentUpon>ShowList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ShowListOfBooks.resx">
       <DependentUpon>ShowListOfBooks.cs</DependentUpon>
@@ -112,6 +277,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Update Book.resx">
+      <DependentUpon>Update Book.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateUser.resx">
+      <DependentUpon>UpdateUser.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

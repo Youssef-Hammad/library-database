@@ -14,27 +14,32 @@ namespace WindowsFormsApplication1
   
     public partial class Form1 : Form
     {
-        SqlConnection con;
+        SqlConnection myconnection;
         SqlCommand comm;
-
         string Username;
         string Password;
         public string SignInID;
+        public string AdminSignInID;
+        string serverName = "LAPTOP-VVA7D5A9\\SQLEXPRESS";
+        string Database = "ULM";
+        
+       
+           
         public Form1()
-        {
+        { 
             InitializeComponent();
+            connectionstring.myconnectionstring = "Data Source=" + serverName + ";Initial Catalog=" + Database + ";Integrated Security=True";
             this.WindowState = FormWindowState.Normal;
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(400, 100);
-            con = new SqlConnection("Data Source=DESKTOP-NF0CFJ8\\SQLEXPRESS;Initial Catalog=mylib;Integrated Security=True");
-
-     
-            comm = new SqlCommand();
-            comm.Connection = con;
+			myconnection  = new SqlConnection(connectionstring.myconnectionstring);
+			comm = new SqlCommand();
+            comm.Connection = myconnection;
             label5.Hide();
+            FormState.mainform = this;
+            
         }
     
-
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -83,14 +88,14 @@ namespace WindowsFormsApplication1
         private void button1_Click_1(object sender, EventArgs e)
         {
             Student stu;
-            
+            Admin adm;
 
             Username = textBox1.Text;
             Password = textBox2.Text;
 
             Console.WriteLine(Username + " " + Password);
 
-            con.Open();
+            myconnection.Open();
 
             comm.CommandText = "select * from ACCOUNT where USERNAME = '" + Username + "'";
 
@@ -111,17 +116,30 @@ namespace WindowsFormsApplication1
                 else
                 {
                     MessageBox.Show("Logic Successful!");
-                    comm.CommandText = "select USER_ID from ACCOUNT where USERNAME = '" + Username + "'";
+                    comm.CommandText = "select ADMIN_ID from ACCOUNT where USERNAME = '" + Username + "'";
                     object temp = comm.ExecuteScalar();
-                    SignInID = temp.ToString();
-                    stu = new Student();
-                    stu.Show();
-                    this.Hide();
-                    FormState.PreviousPage = this;
+                    if(temp.ToString() != "")
+                    {
+                        Hide();
+                        AdminSignInID = temp.ToString();
+                        adm = new Admin();
+                        adm.Show();
+                    }
+                    else
+                    {
+                        comm.CommandText = "select STUDENT_ID from ACCOUNT where USERNAME = '" + Username + "'";
+                        temp = comm.ExecuteScalar();
+                        SignInID = temp.ToString();
+                        stu = new Student();
+                        stu.Show();
+                        this.Hide();
+                        FormState.PreviousPage = this;
+                    }
+                    
                     
                 }
             }
-            con.Close();
+            myconnection.Close();
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -152,15 +170,30 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            
+            Admin myadmin = new Admin();
+            myadmin.Show();
+            this.Hide();
         }
+
+        public void ShowAndEmpty()
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            Show();
+        }
+
     }
     public static class FormState
     {
         public static Form PreviousPage;
-        
+        public static Form AdminForm;
+        public static Form1 mainform;
     }
-   
+    public static class connectionstring
+    {
+        public static string myconnectionstring;
+    }
 }

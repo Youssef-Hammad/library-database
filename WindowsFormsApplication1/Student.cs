@@ -14,9 +14,9 @@ namespace WindowsFormsApplication1
 
     public partial class Student : Form
     {
-
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-NF0CFJ8\\SQLEXPRESS;Initial Catalog=mylib;Integrated Security=True");
-        SqlCommand comm = new SqlCommand();
+        
+		SqlConnection con = new SqlConnection(connectionstring.myconnectionstring);
+		SqlCommand comm = new SqlCommand();
         static Form SignIn = Application.OpenForms["Form1"];
         public string SignInID = ((Form1)SignIn).SignInID;
         public Student()
@@ -24,6 +24,8 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             comm.Connection = con;
             this.WindowState = FormWindowState.Normal;
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(400, 100);
 
 
             con.Open();
@@ -31,8 +33,8 @@ namespace WindowsFormsApplication1
             //Setting the Username...
             comm.CommandText = "Select Username " +
                                "From ACCOUNT inner Join STUDENT " +
-                               "on ACCOUNT.USER_ID = STUDENT.USER_ID " +
-                               "where ACCOUNT.USER_ID = " + this.SignInID;
+                               "on ACCOUNT.STUDENT_ID = STUDENT.STUDENT_ID " +
+                               "where ACCOUNT.STUDENT_ID = " + this.SignInID;
             object temp = comm.ExecuteScalar();
             Username.Text = temp.ToString();
 
@@ -40,21 +42,38 @@ namespace WindowsFormsApplication1
             //Setting User Level
             comm.CommandText = "Select YEAR " +
                                "From ACCOUNT inner Join STUDENT " +
-                               "on ACCOUNT.USER_ID = STUDENT.USER_ID " +
-                               "where ACCOUNT.USER_ID = " + this.SignInID;
+                               "on ACCOUNT.STUDENT_ID = STUDENT.STUDENT_ID " +
+                               "where ACCOUNT.STUDENT_ID = " + this.SignInID;
             temp = comm.ExecuteScalar();
             UserLevel.Text = temp.ToString();
 
             //Setting User Date of Birth
             comm.CommandText = "Select DATEOFBIRTH " +
                                "From ACCOUNT inner Join STUDENT " +
-                               "on ACCOUNT.USER_ID = STUDENT.USER_ID " +
-                               "where ACCOUNT.USER_ID = " + this.SignInID;
+                               "on ACCOUNT.STUDENT_ID = STUDENT.STUDENT_ID " +
+                               "where ACCOUNT.STUDENT_ID = " + this.SignInID;
             DateTime d = (DateTime)comm.ExecuteScalar();     //catching Date in DateTime Object then changed into string...
             UserDoB.Text = d.ToShortDateString();
 
+            //Setting User Age
+            comm.CommandText = "Select Age " +
+                               "From ACCOUNT inner Join STUDENT " +
+                               "on ACCOUNT.STUDENT_ID = STUDENT.STUDENT_ID " +
+                               "where ACCOUNT.STUDENT_ID = " + this.SignInID;
+            temp = comm.ExecuteScalar();
+            UserAge.Text = temp.ToString();
+            //Setting User Expiry Date
+            comm.CommandText = "Select EXPIRATIONDATE " +
+                               "from Student,librarycard,account " +
+                               "where student.student_id = librarycard.student_id " +
+                               "and student.student_id = account.student_id " +
+                               "and ACCOUNT.STUDENT_ID = " + SignInID;
+            temp = comm.ExecuteScalar();
+            UserCardExpiryDate.Text = temp.ToString();
+
             //Settng User ID
             UserID.Text = this.SignInID;
+
             con.Close();
 
         }
@@ -106,7 +125,7 @@ namespace WindowsFormsApplication1
             
 
             con.Open();
-            comm.CommandText = "update STUDENT set DATEOFBIRTH = " + UserDoB.Text + " , YEAR = " + UserLevel.Text + " where USER_ID = 6";
+            comm.CommandText = "update STUDENT set DATEOFBIRTH = " + UserDoB.Text + " , YEAR = " + UserLevel.Text + " where STUDENT.STUDNET_ID = " + SignIn;
             con.Close();
         }
 
@@ -193,15 +212,16 @@ namespace WindowsFormsApplication1
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            Form tempForm = Application.OpenForms["Form1"];
             
+            FormState.mainform.ShowAndEmpty();
             this.Hide();
-            Form1 Mymain = new Form1();
-            Mymain.Show();
+        
         }
 
         private void RentBookButton_Click(object sender, EventArgs e)
         {
-            RentedBooks myrents = new RentedBooks();
+            StudentRentBooks myrents = new StudentRentBooks();
             myrents.Show();
             this.Hide();
             FormState.PreviousPage = this;
@@ -210,6 +230,17 @@ namespace WindowsFormsApplication1
         private void Student_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void Label1_Click_1(object sender, EventArgs e)
+        {
+            FormState.mainform.ShowAndEmpty();
+            this.Hide();
         }
     }
 }
